@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/add_icon.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/back_icon.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/background_add_button.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/background_delete.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/background_note_color_2.xml" value="0.2245" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/background_search.xml" value="0.111" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/background_user_image.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/exit_icon.xml" value="0.111" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/image_icon.xml" value="0.2245" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/language_icon.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/moon_icon.xml" value="0.2245" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/search_icon.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/splash_pci.xml" value="0.2" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/style_change_icon.xml" value="0.2245" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/sum_icon.xml" value="0.2245" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/sun_icon.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/test.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/upload_icon.xml" value="0.111" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_cload_note.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_create_note.xml" value="0.152" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_reguser.xml" value="0.264" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/item_container_note.xml" value="0.25364583333333335" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_add_url.xml" value="0.1125" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_delete_note.xml" value="0.1125" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_miscellaneous.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

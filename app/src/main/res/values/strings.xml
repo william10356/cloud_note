@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="my_notes">我的笔记</string>
+    <string name="search_notes">搜索笔记</string>
+    <string name="sub_title">副标题</string>
+    <string name="type_note_here">笔记内容</string>
+    <string name="Miscellaneous">样式</string>
+    <string name="add_url">添加链接</string>
+    <string name="add_image">添加图片</string>
+    <string name="enter_url">输入链接</string>
+    <string name="text_cancel">取消</string>
+    <string name="del_note">删除</string>
+    <string name="inquiry_del">你确定要删除这个笔记吗？</string>
+    <string name="i_true">确定</string>
+</resources>
