@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     private List<Note> notes;
     private NotesListener notesListener;
+
 
     public void setNotes(List<Note> notes) {
         this.notes = notes;
@@ -59,6 +59,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 notesListener.onNoteClicked(notes.get(position),position);
             }
         });
+
     }
 
 

@@ -1,7 +1,5 @@
 package com.example.notes.Util;
 
-import com.alibaba.fastjson.JSON;
-
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -26,11 +24,12 @@ public class PostRequest {
         }
 
     }
-    public  String  post_note(String url, String token, String note) throws IOException {
+
+    public String post_note(String url, String token, String note) throws IOException {
         client = new OkHttpClient();
-        RequestBody body = RequestBody.create(JSON,note);
+        RequestBody body = RequestBody.create(JSON, note);
         Request request = new Request.Builder()
-                .addHeader("Authorization",token)
+                .addHeader("Authorization", token)
                 .url(url)
                 .post(body)
                 .build();
@@ -40,10 +39,24 @@ public class PostRequest {
 
     }
 
-    public String post(String url,String token) throws IOException {
+    public String post_note_delete(String url, String token, String id) throws IOException {
+        client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder().add("id", id).build();
+        Request request = new Request.Builder()
+                .addHeader("Authorization", token)
+                .url(url)
+                .post(body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+
+    }
+
+    public String post(String url, String token) throws IOException {
         client = new OkHttpClient();
         Request request = new Request.Builder()
-                .addHeader("Authorization",token)
+                .addHeader("Authorization", token)
                 .get()
                 .url(url)
                 .build();

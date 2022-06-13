@@ -1,6 +1,6 @@
 package com.example.notes.entities;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -11,13 +11,14 @@ import java.io.Serializable;
 public class Note implements Serializable {
 
 
-    @PrimaryKey(autoGenerate = true)
-    protected int id;
+    @NonNull
+    @PrimaryKey
+    protected String id;
 
     @ColumnInfo(name = "title")
     protected String title;
 
-    @PrimaryKey
+
     @ColumnInfo(name = "data_time")
     protected String dateTime;
 
@@ -37,11 +38,11 @@ public class Note implements Serializable {
     protected String webLink;
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

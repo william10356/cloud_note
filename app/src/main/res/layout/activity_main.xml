@@ -17,31 +17,35 @@
         android:fontFamily="@font/ubuntu_bold"
         android:includeFontPadding="false"
         android:text="@string/my_notes"
+        android:gravity="center"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/user_to_login"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/user_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_oval="true" />
 
     <ImageView
         android:id="@+id/cloud_note"
         android:layout_width="41dp"
         android:layout_height="31dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="36dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/cloud_note_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/colorIcons" />
-
-    <Switch
-        android:id="@+id/style_change"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_23sdp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Switch>
 
     <LinearLayout
         android:id="@+id/layoutSearch"
@@ -88,15 +92,6 @@
         android:padding="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/user_to_login"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/user_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_oval="true"/>
 
 
 

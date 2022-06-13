@@ -1,12 +1,5 @@
 package com.example.notes.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -34,13 +28,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.alibaba.fastjson.JSON;
 import com.example.notes.R;
 import com.example.notes.Util.MyBitmapUtil;
+import com.example.notes.Util.PostRequest;
 import com.example.notes.Util.myJsonUtil;
 import com.example.notes.database.NotesDatabase;
 import com.example.notes.entities.Note;
-import com.example.notes.Util.PostRequest;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.IOException;
@@ -48,6 +49,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class CreateNoteActivity extends AppCompatActivity {
 
@@ -96,7 +98,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         uploadNote = findViewById(R.id.UploadNote);
 
         inputTextDateTime.setText(
-              new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
+                new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss a", Locale.getDefault())
                       .format(new Date())
         );
 
@@ -139,14 +141,20 @@ public class CreateNoteActivity extends AppCompatActivity {
         inputNoteTitle.setText(alreadyAvailableNote.getTitle());
         inputNoteSubtitle.setText(alreadyAvailableNote.getSubtitle());
         inputNoteText.setText(alreadyAvailableNote.getNoteText());
+//        String now_time =  new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss a", Locale.getDefault()).format(new Date());
         inputTextDateTime.setText(alreadyAvailableNote.getDateTime());
         uploadNote.setVisibility(View.VISIBLE);
         uploadNote.setOnClickListener((v) -> { uploadNote(); });
         //修改图片
         if (alreadyAvailableNote.getImagePath() != null && !alreadyAvailableNote.getImagePath().trim().isEmpty()) {
 
-            //path转bitmap
-            imageNote.setImageBitmap(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
+            String temp_path = alreadyAvailableNote.getImagePath();
+            if (!temp_path.startsWith("data")) {
+                imageNote.setImageBitmap(BitmapFactory.decodeFile(temp_path));
+            } else {
+                temp_path = temp_path.replace("data:image/png;base64,", "");
+                imageNote.setImageBitmap(MyBitmapUtil.base64ToBitmap(temp_path));
+            }
             imageNote.setVisibility(View.VISIBLE);
 
             findViewById(R.id.imageRemoveImage).setVisibility(View.VISIBLE);
@@ -161,29 +169,37 @@ public class CreateNoteActivity extends AppCompatActivity {
     }
 
     private void uploadNote() {
-        final Note note =setNote();
+        final Note note = setNote();
         //原图上传
-        base64_to_cloud ="data:image/png;base64,"+MyBitmapUtil.bitmapToString(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
+        if (!TextUtils.isEmpty(alreadyAvailableNote.getImagePath())) {
+            base64_to_cloud = "data:image/png;base64," + MyBitmapUtil.bitmapToString(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
+        }
         note.setImagePath(base64_to_cloud);
-        String Note_js= JSON.toJSONString(note);
+//        String now_time =  new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss a", Locale.getDefault()).format(new Date());
+        note.setDateTime(alreadyAvailableNote.getDateTime());
+        String Note_js = JSON.toJSONString(note);
         PostRequest postRequest = new PostRequest();
-        sharedPreferences =  getSharedPreferences("login",0);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                try {
-                    String result = postRequest.post_note("http://152.136.246.142:3007/my/upload",sharedPreferences.getString("token",""),Note_js);
-                    if (myJsonUtil.isJson(result)){
-                        Toast.makeText(CreateNoteActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(CreateNoteActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+        sharedPreferences = getSharedPreferences("login", 0);
+        if (TextUtils.isEmpty(sharedPreferences.getString("token", ""))) {
+            Toast.makeText(CreateNoteActivity.this, "账号未登录", Toast.LENGTH_SHORT).show();
+        } else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Looper.prepare();
+                    try {
+                        String result = postRequest.post_note("http://152.136.246.142:3007/my/upload", sharedPreferences.getString("token", ""), Note_js);
+                        if (myJsonUtil.isJson(result)) {
+                            Toast.makeText(CreateNoteActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CreateNoteActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e){
-                    e.printStackTrace();
                 }
-            }
-        }).start();
+            }).start();
+        }
     }
 
     //保存笔记
@@ -222,9 +238,12 @@ public class CreateNoteActivity extends AppCompatActivity {
     private Note setNote() {
         final Note note = new Note();
         //保存数据
+        UUID id = UUID.randomUUID();
+        note.setId(id.toString());
         note.setTitle(inputNoteTitle.getText().toString());
         note.setSubtitle(inputNoteSubtitle.getText().toString());
         note.setNoteText(inputNoteText.getText().toString());
+        //修改时的获取时间
         note.setDateTime(inputTextDateTime.getText().toString());
         note.setColor(selectedNoteColor);
         //如果layoutWebUrl可见，则url肯定添加了

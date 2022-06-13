@@ -25,13 +25,14 @@
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_cload_note.xml" value="0.1" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_create_note.xml" value="0.152" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_reguser.xml" value="0.264" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/item_container_note.xml" value="0.25364583333333335" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_add_url.xml" value="0.1125" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_delete_note.xml" value="0.1125" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_miscellaneous.xml" value="0.264" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/menu/mycloudmenu.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>

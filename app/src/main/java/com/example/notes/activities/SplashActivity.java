@@ -1,13 +1,11 @@
 package com.example.notes.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
@@ -51,6 +49,7 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(SplashActivity.this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
 
