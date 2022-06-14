@@ -44,6 +44,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.loading.dialog.IOSLoadingDialog;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 public class RegUserActivity extends AppCompatActivity {
@@ -55,6 +56,7 @@ public class RegUserActivity extends AppCompatActivity {
     private String post_to_pic = null;
     private RoundedImageView userImage;
     private String selectedImagePath;
+    IOSLoadingDialog iosLoadingDialog = new IOSLoadingDialog().setOnTouchOutside(false);
     private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
     private Handler mHandler = new Handler(Looper.myLooper()){
@@ -66,6 +68,7 @@ public class RegUserActivity extends AppCompatActivity {
                     String obj = (String) msg.obj;
                     Gson gson = new Gson();
                     RegUserResult regUserResult = gson.fromJson(obj,RegUserResult.class);
+                    iosLoadingDialog.dismiss();
                     if (regUserResult.getStatus()!=0){
                         Toast.makeText(RegUserActivity.this, regUserResult.getMessage(), Toast.LENGTH_SHORT).show();
                     }else {
@@ -133,6 +136,7 @@ public class RegUserActivity extends AppCompatActivity {
                 if (!password.equals(password_confirm)){
                     Toast.makeText(RegUserActivity.this, "密码不一致，请重新输入!", Toast.LENGTH_SHORT).show();
                 }else{
+                    iosLoadingDialog.show(getFragmentManager(),"RegUserDialog");
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

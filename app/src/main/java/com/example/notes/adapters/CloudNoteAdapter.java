@@ -44,6 +44,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
     private SharedPreferences sharedPreferences;
     private CloudNoteActivity cloudNoteActivity;
     public static final int CLOUD_RESULT_OK = -1;
+    public static final int CLOUD_UPDATE_RESULT_OK=-2;
 
 
 
@@ -95,7 +96,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
                                 protected void onPostExecute(List<Note> notes) {
                                     super.onPostExecute(notes);
                                     if (notes.isEmpty()){
-                                        Toast.makeText(cloudNoteActivity, "没查到", Toast.LENGTH_SHORT).show();
+                                        //如果本机数据库没有云note则插入
                                         class RecoveryCloudNoteTask extends AsyncTask<Void,Void,Void>{
 
                                             @Override
@@ -113,7 +114,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
                                         }
                                         new RecoveryCloudNoteTask().execute();
                                     }else {
-                                        Toast.makeText(cloudNoteActivity, "查到", Toast.LENGTH_SHORT).show();
+                                        //如果数据库内有云note数据则覆盖
                                         class UpdateCloudNoteTask extends AsyncTask<Void,Void,Void>{
 
 
@@ -127,7 +128,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
                                             protected void onPostExecute(Void unused) {
                                                 super.onPostExecute(unused);
                                                 Intent intent = new Intent();
-                                                cloudNoteActivity.setResult(CLOUD_RESULT_OK, intent);
+                                                cloudNoteActivity.setResult(CLOUD_UPDATE_RESULT_OK, intent);
                                             }
                                         }
                                         new UpdateCloudNoteTask().execute();

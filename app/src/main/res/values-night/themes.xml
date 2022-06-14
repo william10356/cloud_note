@@ -10,10 +10,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--主题背景-->
-        <item name="backgroundColor">@color/colorGray</item>
+        <!--  这三行是重点  -->
+        <!--    设置背景，解决白屏的关键    -->
+        <item name="backgroundColor">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@drawable/splash_pci</item>
-        <item name="android:statusBarColor" tools:tarApi="1">@color/colorPrimary</item>
+        <!-- 设置状态栏为白色的，状态栏文字为黑的 -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 </resources>

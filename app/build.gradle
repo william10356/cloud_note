@@ -61,6 +61,9 @@ dependencies {
     //材料设计
     implementation 'com.google.android.material:material:1.1.0'
 
+    //加载框
+    implementation 'com.github.ydstar:loadingdialog:1.0.0'
+
     //圆视图
     implementation 'com.makeramen:roundedimageview:2.3.0'
 

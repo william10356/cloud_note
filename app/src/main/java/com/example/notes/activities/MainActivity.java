@@ -27,12 +27,14 @@ import com.example.notes.R;
 import com.example.notes.Util.MyBitmapUtil;
 import com.example.notes.Util.PostRequest;
 import com.example.notes.Util.myJsonUtil;
+import com.example.notes.adapters.CloudNoteAdapter;
 import com.example.notes.adapters.NoteAdapter;
 import com.example.notes.database.NotesDatabase;
 import com.example.notes.entities.Note;
 import com.example.notes.entities.UserImageResult;
 import com.example.notes.listeners.NotesListener;
 import com.google.gson.Gson;
+import com.loading.dialog.IOSLoadingDialog;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.IOException;
@@ -47,10 +49,11 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
     public static final int REQUEST_CODE_UPDATE_NOTE = 2;
 
     private static final int REQUEST_CODE_SHOW_NOTE = 3;
-
+    private static final int REQUEST_CLOUD_CODE_ADD_NOTE = 4;
 
 
     private RecyclerView notesRecyclerView;
+    IOSLoadingDialog iosLoadingDialog = new IOSLoadingDialog().setOnTouchOutside(false);
     private List<Note> noteList;
     private NoteAdapter notesAdapter;
     private int noteClickedPosition = -1;
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                         Log.d("base",base64_pic);
                         Bitmap bitmap = MyBitmapUtil.base64ToBitmap(base64_pic);
                         user_Image.setImageBitmap(bitmap);
+                        iosLoadingDialog.dismiss();
                     }
                     Toast.makeText(MainActivity.this, userInfoResult.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -96,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
 
         //判断本地有没有保存token如有则post无则不做任何任务
         if (!TextUtils.isEmpty(sharedPreferences.getString("token", ""))) {
+
+            iosLoadingDialog.show(getFragmentManager(), "iosLoadingDialog");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -157,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
         cloud_note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, CloudNoteActivity.class));
-                finish();
+                startActivityForResult(new Intent(MainActivity.this, CloudNoteActivity.class),REQUEST_CLOUD_CODE_ADD_NOTE);
+//                finish();
             }
         });
 
@@ -234,6 +240,8 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                 }
                 else if (requestCode == REQUEST_CODE_UPDATE_NOTE) {
                     //更新列表
+                    //notes是当前数据库内数据并且按照时间降序
+                    //notelist是进入到main才拿到的数据库数据。
                     noteList.remove(noteClickedPosition);
 
                     if (isNoteDeleted) {
@@ -243,14 +251,16 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                         notesAdapter.notifyItemChanged(noteClickedPosition);
                     }
                 }
-//                else if (requestCode == REQUEST_CLOUD_CODE_ADD_NOTE){
-//                    noteList.add(0, notes.get(0));
-//                    notesAdapter.notifyItemInserted(0);
-//                    notesRecyclerView.smoothScrollToPosition(0);
-//                }
-//                else if (requestCode ==REQUEST_CLOUD_CODE_UPDATE_NOTE){
-//                    notesAdapter.notifyItemChanged(noteClickedPosition);
-//                }
+                else if (requestCode == REQUEST_CLOUD_CODE_ADD_NOTE){
+                    noteList.clear();
+                    noteList.addAll(notes);
+                    notesAdapter.notifyDataSetChanged();
+                }
+                else if (requestCode ==REQUEST_CLOUD_CODE_ADD_NOTE){
+                    noteList.clear();
+                    noteList.addAll(notes);
+                    notesAdapter.notifyDataSetChanged();
+                }
             }
         }
         new GetNoteTask().execute();
@@ -262,16 +272,16 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
         if (requestCode == REQUEST_CODE_ADD_NOTE && resultCode == RESULT_OK) {
             getNotes(REQUEST_CODE_ADD_NOTE, false);
         }
-//        else if (requestCode == REQUEST_CLOUD_CODE_ADD_NOTE && resultCode == CloudNoteAdapter.CLOUD_RESULT_OK){
-//            getNotes(REQUEST_CLOUD_CODE_ADD_NOTE,false);
-//        }
+        else if (requestCode == REQUEST_CLOUD_CODE_ADD_NOTE && resultCode == CloudNoteAdapter.CLOUD_RESULT_OK){
+            getNotes(REQUEST_CLOUD_CODE_ADD_NOTE,false);
+        }
         else if (requestCode == REQUEST_CODE_UPDATE_NOTE && resultCode == RESULT_OK) {
             if (data != null) {
                 getNotes(REQUEST_CODE_UPDATE_NOTE, data.getBooleanExtra("isNoteDeleted", false));
             }
         }
-//        else if (requestCode == REQUEST_CLOUD_CODE_UPDATE_NOTE && resultCode == CloudNoteAdapter.CLOUD_RESULT_OK){
-//            getNotes(REQUEST_CLOUD_CODE_UPDATE_NOTE,false);
-//        }
+        else if (requestCode == REQUEST_CLOUD_CODE_ADD_NOTE && resultCode == CloudNoteAdapter.CLOUD_UPDATE_RESULT_OK){
+            getNotes(REQUEST_CLOUD_CODE_ADD_NOTE,false);
+        }
     }
 }

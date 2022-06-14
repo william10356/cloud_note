@@ -16,6 +16,7 @@
         <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/language_icon.xml" value="0.2475" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/moon_icon.xml" value="0.2245" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/search_icon.xml" value="0.2475" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/splash_background.xml" value="0.174" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/splash_pci.xml" value="0.2" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/style_change_icon.xml" value="0.2245" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/drawable/sum_icon.xml" value="0.2245" />
@@ -28,6 +29,7 @@
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_reguser.xml" value="0.264" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/dialog_loading.xml" value="0.171875" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/item_container_note.xml" value="0.25364583333333335" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_add_url.xml" value="0.1125" />
         <entry key="..\:/apppack/NotesApp/app/src/main/res/layout/layout_delete_note.xml" value="0.1125" />

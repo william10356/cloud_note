@@ -3,8 +3,10 @@ package com.example.notes.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -102,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
 
 
 }

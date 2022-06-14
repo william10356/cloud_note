@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Notes</string>
+    <string name="app_name">便签</string>
     <string name="my_notes">我的笔记</string>
     <string name="search_notes">搜索笔记</string>
     <string name="sub_title">副标题</string>

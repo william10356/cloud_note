@@ -24,17 +24,17 @@ import com.example.notes.adapters.CloudNoteAdapter;
 import com.example.notes.entities.CloudNoteResult;
 import com.example.notes.entities.Note;
 import com.google.gson.Gson;
+import com.loading.dialog.IOSLoadingDialog;
 
 import java.io.IOException;
 import java.util.List;
 
 public class CloudNoteActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
-    private ImageView cloud_note_imageBack;
+    private IOSLoadingDialog iosLoadingDialog = new IOSLoadingDialog().setOnTouchOutside(false);
     private CloudNoteAdapter MyCloud_noteAdapter;
     private RecyclerView MyCloud_recyclerView;
     private List<Note> MyCloudNote;
-    private int noteClickedPosition = -1;
 
     private final Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
@@ -56,6 +56,7 @@ public class CloudNoteActivity extends AppCompatActivity {
 
                         MyCloud_recyclerView.setAdapter(MyCloud_noteAdapter);
                     }
+                    iosLoadingDialog.dismiss();
                     Toast.makeText(CloudNoteActivity.this, cloudNoteResult.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -67,20 +68,14 @@ public class CloudNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cload_note);
         MyCloud_recyclerView = findViewById(R.id.my_cloud_notesRecyclerView);
-        cloud_note_imageBack = findViewById(R.id.cloud_note_imageBack);
-        cloud_note_imageBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CloudNoteActivity.this, MainActivity.class));
-                finish();
-            }
-        });
         MyCloud_recyclerView.setLayoutManager(
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         );
 
+        //绑定tag为login的sharedPreferences来获取本机的token信息来post给服务端
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         if (!TextUtils.isEmpty(sharedPreferences.getString("token", ""))) {
+            iosLoadingDialog.show(getFragmentManager(),"iosLoadingDialog");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
