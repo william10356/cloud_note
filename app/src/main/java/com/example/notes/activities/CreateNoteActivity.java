@@ -171,7 +171,13 @@ public class CreateNoteActivity extends AppCompatActivity {
         final Note note = setNote();
         //原图上传
         if (!TextUtils.isEmpty(alreadyAvailableNote.getImagePath())) {
-            base64_to_cloud = "data:image/png;base64," + MyBitmapUtil.bitmapToString(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
+            if (!alreadyAvailableNote.getImagePath().startsWith("data")){
+                String temp_path = alreadyAvailableNote.getImagePath();
+                Log.d("result_now",temp_path);
+                base64_to_cloud = "data:image/png;base64," + MyBitmapUtil.bitmapToString(temp_path);
+            }else {
+                base64_to_cloud = alreadyAvailableNote.getImagePath();
+            }
         }
         note.setImagePath(base64_to_cloud);
 //        String now_time =  new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss a", Locale.getDefault()).format(new Date());
@@ -190,8 +196,10 @@ public class CreateNoteActivity extends AppCompatActivity {
                         String result = postRequest.post_note("http://152.136.246.142:3007/my/upload", sharedPreferences.getString("token", ""), Note_js);
                         if (myJsonUtil.isJson(result)) {
                             Toast.makeText(CreateNoteActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                            Log.d("result_now",result);
                         } else {
                             Toast.makeText(CreateNoteActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+                            Log.d("result_now",result);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

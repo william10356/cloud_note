@@ -37,7 +37,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.io.IOException;
 import java.util.List;
 
-public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder>{
+public class CloudNoteAdapter extends RecyclerView.Adapter<CloudNoteAdapter.CloudNoteViewHolder>{
     private List<Note> notes;
     private NotesListener notesListener;
     private CloudNotesListener cloudNotesListener;
@@ -61,8 +61,8 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
     }
     @NonNull
     @Override
-    public NoteAdapter.NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NoteAdapter.NoteViewHolder(
+    public CloudNoteAdapter.CloudNoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new CloudNoteAdapter.CloudNoteViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.item_container_note,
                         parent,
@@ -73,7 +73,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
 
     @SuppressLint("RecyclerView")
     @Override
-    public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull CloudNoteAdapter.CloudNoteViewHolder holder, final int position) {
         Note now_note = notes.get(position);
         holder.setNote(now_note);
         holder.layoutNote.setOnLongClickListener(new View.OnLongClickListener() {
@@ -112,6 +112,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
                                                 super.onPostExecute(unused);
                                                 Intent intent = new Intent();
                                                 cloudNoteActivity.setResult(CLOUD_RESULT_OK, intent);
+                                                Toast.makeText(cloudNoteActivity.getApplicationContext(), "恢复成功", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         new RecoveryCloudNoteTask().execute();
@@ -131,6 +132,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
                                                 super.onPostExecute(unused);
                                                 Intent intent = new Intent();
                                                 cloudNoteActivity.setResult(CLOUD_UPDATE_RESULT_OK, intent);
+                                                Toast.makeText(cloudNoteActivity.getApplicationContext(), "恢复成功", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         new UpdateCloudNoteTask().execute();
@@ -161,6 +163,7 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
                             }).start();
                             notes.remove(position);
                             notifyDataSetChanged();
+                            Toast.makeText(cloudNoteActivity.getApplicationContext(), "删除成功", Toast.LENGTH_SHORT).show();
                     }
                     return false;
                 }
@@ -185,14 +188,14 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
     public int getItemViewType(int position) {
         return position;
     }
-    static class NoteViewHolder extends RecyclerView.ViewHolder {
+    static class CloudNoteViewHolder extends RecyclerView.ViewHolder {
 
         TextView textTitle, textSubtitle, textDateTime;
         LinearLayout layoutNote;
         RoundedImageView imageNote;
 
 
-        NoteViewHolder(@NonNull View itemView) {
+        CloudNoteViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
             textSubtitle = itemView.findViewById(R.id.textSubtitle);
