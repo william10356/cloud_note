@@ -247,7 +247,6 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                     //notes是当前数据库内数据并且按照时间降序
                     //notelist是进入到main才拿到的数据库数据。
                     noteList.remove(noteClickedPosition);
-
                     if (isNoteDeleted) {
                         notesAdapter.notifyItemRemoved(noteClickedPosition);
                     } else {

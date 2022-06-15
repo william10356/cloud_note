@@ -146,7 +146,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         uploadNote.setOnClickListener((v) -> { uploadNote(); });
         //修改图片
         if (alreadyAvailableNote.getImagePath() != null && !alreadyAvailableNote.getImagePath().trim().isEmpty()) {
-
+            Log.d("base87",alreadyAvailableNote.getImagePath());
             String temp_path = alreadyAvailableNote.getImagePath();
             if (!temp_path.startsWith("data")) {
                 imageNote.setImageBitmap(BitmapFactory.decodeFile(temp_path));
