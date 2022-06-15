@@ -46,9 +46,11 @@ public class CloudNoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewH
     public static final int CLOUD_RESULT_OK = -1;
     public static final int CLOUD_UPDATE_RESULT_OK=-2;
 
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
 
-
-    public CloudNoteAdapter(CloudNoteActivity cloudNoteActivity,List<Note> notes, CloudNotesListener cloudNotesListener) {
+    public CloudNoteAdapter(CloudNoteActivity cloudNoteActivity, List<Note> notes, CloudNotesListener cloudNotesListener) {
         this.cloudNoteActivity = cloudNoteActivity;
         this.notes = notes;
         this.cloudNotesListener = cloudNotesListener;

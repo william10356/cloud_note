@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                         Log.d("base",base64_pic);
                         Bitmap bitmap = MyBitmapUtil.base64ToBitmap(base64_pic);
                         user_Image.setImageBitmap(bitmap);
-                        iosLoadingDialog.dismiss();
                     }
+                    iosLoadingDialog.dismiss();
                     Toast.makeText(MainActivity.this, userInfoResult.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -106,9 +106,13 @@ public class MainActivity extends AppCompatActivity implements NotesListener {
                 @Override
                 public void run() {
                     sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+                    Log.d("now",sharedPreferences.getString("token", ""));
                     PostRequest postRequest = new PostRequest();
                     try {
                         String result = postRequest.post("http://152.136.246.142:3007/my/userinfo", sharedPreferences.getString("token", ""));
+                        if (result==null){
+                            iosLoadingDialog.dismiss();
+                        }
                         if (myJsonUtil.isJson(result)) {
                             Message message = mHandler.obtainMessage();
                             message.what=1;

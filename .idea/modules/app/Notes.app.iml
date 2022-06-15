@@ -114,6 +114,9 @@
     <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.blankj:utilcodex:1.30.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: io.github.scwang90:refresh-layout-kernel:2.0.5@aar" level="project" />
+    <orderEntry type="library" name="Gradle: io.github.scwang90:refresh-footer-classics:2.0.5@aar" level="project" />
+    <orderEntry type="library" name="Gradle: io.github.scwang90:refresh-drawable-paint:2.0.5@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.intuit.sdp:sdp-android:1.0.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.intuit.ssp:ssp-android:1.0.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.ydstar:loadingdialog:1.0.0@aar" level="project" />

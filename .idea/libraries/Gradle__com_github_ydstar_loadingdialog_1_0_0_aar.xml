@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.ydstar:loadingdialog:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5303931a5f8b4b1c9c823f9e69ea9dec/transformed/loadingdialog-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5303931a5f8b4b1c9c823f9e69ea9dec/transformed/loadingdialog-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5303931a5f8b4b1c9c823f9e69ea9dec/transformed/loadingdialog-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e9ce09be20c8bdc7f66d5b0f5723435c/transformed/jetified-loadingdialog-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e9ce09be20c8bdc7f66d5b0f5723435c/transformed/jetified-loadingdialog-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e9ce09be20c8bdc7f66d5b0f5723435c/transformed/jetified-loadingdialog-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

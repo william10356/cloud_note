@@ -9,8 +9,18 @@ public class CloudNoteResult {
     private int status;
     @SerializedName("message")
     private String message;
+    @SerializedName("pages")
+    private int pages;
     @SerializedName("data")
     private List<Note> noteList;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
 
     public int getStatus() {
         return status;

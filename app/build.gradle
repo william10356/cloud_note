@@ -41,6 +41,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
 
+
+    implementation  'io.github.scwang90:refresh-layout-kernel:2.0.5'
+    implementation  'io.github.scwang90:refresh-footer-classics:2.0.5'
+
     implementation 'com.google.code.gson:gson:2.9.0'
     //工具类
     implementation 'com.blankj:utilcodex:1.30.6'

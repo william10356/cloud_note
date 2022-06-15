@@ -23,6 +23,7 @@
 
 
 
+    
     <LinearLayout
         android:id="@+id/my_cloud_layoutSearch"
         android:layout_width="match_parent"
@@ -42,37 +43,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
-
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_cloud_notesRecyclerView"
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_2sdp"
-        android:layout_marginEnd="@dimen/_2sdp"
-        android:clipToPadding="false"
-        android:paddingStart="0dp"
-        android:paddingBottom="@dimen/_12sdp"
-        app:layout_constraintBottom_toTopOf="@+id/my_cloud_layoutQuickActions"
-        app:layout_constraintTop_toBottomOf="@id/my_cloud_layoutSearch"/>
+        android:layout_height="580dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_cloud_layoutSearch">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/my_cloud_layoutQuickActions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorQuickActionBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="@dimen/_15sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_cloud_notesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:clipToPadding="false"
+            android:paddingStart="0dp"
+            android:paddingBottom="@dimen/_12sdp"
+            android:overScrollMode="never" />
+        <com.scwang.smart.refresh.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

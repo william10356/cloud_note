@@ -38,6 +38,19 @@ public class PostRequest {
         }
 
     }
+    public String post_note_for_page(String url, String token, String page) throws IOException {
+        client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder().add("page",page).build();
+        Request request = new Request.Builder()
+                .addHeader("Authorization", token)
+                .url(url)
+                .post(body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+
+    }
 
     public String post_note_delete(String url, String token, String id) throws IOException {
         client = new OkHttpClient();
